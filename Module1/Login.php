@@ -80,7 +80,7 @@
                 <div class="row">
                     <div class="col"></div>
                     <div class="col">
-                        <h5>Don't have an account?<a href="">SIGN UP</a></h5>
+                        <h5>Don't have an account?<a href="Register.php">SIGN UP</a></h5>
                     </div>
                     <div class="col"></div>
                 </div>

@@ -13,6 +13,17 @@
     <?php
     include '../includes/connect.php';
 
+    if ($_SERVER["REQUEST_METHOD"] == "POST"){
+        $name = $_POST['name'];
+        $password = $_POST['password'];
+        $email = $_POST['email'];
+        $usertype = $_POST['userType'];
+
+        if ($_POST['userType'] == "Student" && $_POST['userType'] == "Staff"){
+            
+            $query = mysqli_query($conn, "INSERT INTO user_ (u_email, u_password, u_name, u_type)")
+        }
+    }
 
     ?>
 
@@ -24,11 +35,19 @@
                 <div class="row">
                     <div class="col"></div>
                     <div class="col" style="">
-                        <h1 class ="title">LOGIN</h1>
+                        <h1 class ="title">REGISTER</h1>
                     </div>
                     <div class="col"></div>
                 </div>
-        
+
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col" style="">
+                        <input type="text" name="name" placeholder="Name..." required/>
+                    </div>
+                    <div class="col"></div>
+                </div>
+
                 <div class="row">
                     <div class="col"></div>
                     <div class="col" style="">
@@ -36,6 +55,7 @@
                     </div>
                     <div class="col"></div>
                 </div>
+
                 <div class="row">
                     <div class="col"></div>
                     <div class="col">
@@ -65,7 +85,7 @@
                 <div class="row">
                     <div class="col"></div>
                     <div class="col">
-                        <h5>Don't have an account?<a href="">SIGN UP</a></h5>
+                        <h5>Already have an account?<a href="Login.php">SIGN IN</a></h5>
                     </div>
                     <div class="col"></div>
                 </div>
