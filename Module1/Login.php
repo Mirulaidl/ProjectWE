@@ -8,31 +8,12 @@
  <!-- Bootstrap -->
 <link rel="icon" href="https://umpsa.edu.my/themes/pana/favicon.ico" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"/>
-<head>
+</head>
  <!-- Connect Css -->
  <!-- <link rel="stylesheet" type="text/css" href="assets/css/style2.scss"> -->
-
-<header>
-<nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
-    
-    <div class="container">
-        <a class="" href="#page-top">
-            <img src="https://brand.umpsa.edu.my/images/logo-umpsa-full-color2.png" alt="Home" style="height: 7vh;">
-        </a>
-        <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            Menu
-            <i class="fas fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#portfolio">Portfolio</a></li>
-                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">About</a></li>
-                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-</header>
+ <?php
+include '../includes/header.php';
+?>
 <body>
     <div class="form" style="border: 1px solid red; margin-top:30vh;">
             <div class="container">
