@@ -16,7 +16,7 @@ if (mysqli_connect_errno())
 	}
 
 // To select one particular database to be used
-mysqli_select_db($conn,"FKPark") or die( "Could not open products database");
+mysqli_select_db($conn,"cd22098") or die( "Could not open products database");
 
 //set the default time zone to use in Malaysia
 date_default_timezone_set('Asia/Kuala_Lumpur');

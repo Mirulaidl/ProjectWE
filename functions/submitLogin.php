@@ -9,14 +9,21 @@ if (isset($_POST['submit'])) {
 
     if ($_POST['userType'] == $Admin){
 
-        $query = "SELECT * FROM administrator WHERE a_email='" . $_POST['email'] . "' AND a_password='" . $_POST['password'];
+        $query = "SELECT * FROM Administrator WHERE a_email='" . $_POST['email'] . "' AND a_password='" . $_POST['password'] . "'";
         $result = mysqli_query($conn, $query);
         if ($row = mysqli_fetch_assoc($result)) {
 
             $_SESSION['Admin'] = $row['a_id'];
             $_SESSION['AdminName'] = $row['a_name'];
+            echo '
+                <script type="text/javascript">
+                      setTimeout(function(){
+                        window.location.href="../Module2/adminDashboard.php";
+                    },2000);
 
-            header("location:../Module2/adminDashboard.php");
+                    </script>
+                ';
+
         }else{
             echo "<script>alert('Invalid Login'); window.location='../login.php';</script>";
         }
@@ -24,36 +31,29 @@ if (isset($_POST['submit'])) {
         //Belum siap navigate ke admin dashboard
     }else if ($_POST['userType'] == "Student"){
         $Student = "Student";
-        $query = "SELECT * FROM user_ WHERE u_email='" . $_POST['email'] . "' AND u_password='" . $_POST['password'] . "' AND u_type = '$Student'";
+        $Status = "Pending"; //tukar nanti bila admin boleh approve new user
+        $query = "SELECT * FROM users WHERE u_email='" . $_POST['email'] . "' AND u_password='" . $_POST['password'] . "' AND u_type = '$Student'" . " AND u_status = '$Status'";
         $result = mysqli_query($conn, $query);
+
 
         if ($row = mysqli_fetch_assoc($result)) {
 
             $_SESSION['User'] = $row['u_id'];
             $_SESSION['UserType'] = $row['u_type'];
             $_SESSION['UserName'] = $row['u_name'];
+            echo '
+                <script type="text/javascript">
+                      setTimeout(function(){
+                        window.location.href="../Module1/userDashboard.php";
+                    },2000);
 
-            header("location:../Module1/userDashboard.php");
+                    </script>
+                ';
         }else{
-            echo "<script>alert('Invalid Login'); window.location='../login.php';</script>";
-        }
-    }else if ($_POST['userType'] == "Staff"){
-        $Staff = "Staff";
-        $query = "SELECT * FROM user_ WHERE u_email='" . $_POST['email'] . "' AND u_password='" . $_POST['password'] . "' AND UserType = '$Staff'";
-        $result = mysqli_query($conn, $query);
-
-        if ($row = mysqli_fetch_assoc($result)) {
-
-            $_SESSION['User'] = $row['u_id'];
-            $_SESSION['UserType'] = $row['u_type'];
-            $_SESSION['UserName'] = $row['u_name'];
-
-            header("location:../Module1/userDashboard.php");
-        }else{
-            echo "<script>alert('Invalid Login'); window.location='../login.php';</script>";
+            echo "<script>alert('Invalid Login'); window.location='../Module1/Login.php';</script>";
         }
     }else{
-        $query = "SELECT * FROM unit_keselamatan WHERE uk_email='" . $_POST['email'] . "' AND uk_password='" . $_POST['password'];
+        $query = "SELECT * FROM UnitKeselamatan WHERE uk_email='" . $_POST['email'] . "' AND uk_password='" . $_POST['password'] . "'";
         $result = mysqli_query($conn, $query);
         if ($row = mysqli_fetch_assoc($result)) {
 
@@ -62,7 +62,7 @@ if (isset($_POST['submit'])) {
 
             header("location:../Module4/ukDashboard.php");
         }else{
-            echo "<script>alert('Invalid Login'); window.location='../login.php';</script>";
+            echo "<script>alert('Invalid Email or Password'); window.location='../login.php';</script>";
         }
     }
 } else{
