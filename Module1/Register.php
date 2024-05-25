@@ -4,6 +4,7 @@
     <title>Register</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
      <!-- Bootstrap -->
     <?php 
     include '../includes/bootstrap.php';
@@ -59,20 +60,20 @@
     
                     echo '
                     <script type="text/javascript">
-                        alert("yes");
+                        alert("Student Successfully Registered!");
                           setTimeout(function(){
                             window.location.href="login.php";
-                        },3000);
+                        },2000);
     
                         </script>
                     ';
                 }else{
                     echo '
                     <script type="text/javascript">
-                        alert("yes");
+                        alert("Student Register Error!");
                           setTimeout(function(){
                             window.location.href="login.php";
-                        },3000);
+                        },2000);
     
                         </script>
                     ';
@@ -86,35 +87,23 @@
     
                     echo '
                     <script type="text/javascript">
-                    $(document).ready(function(){
-                    Swal.fire({
-                    title: "Account Created!",
-                    icon: "success",
-                    timer: 2000,
-                    showConfirmButton: false,
-                    }).then(function() {
-                    window.location.href="login.php";
-                    });
-                    });
+                        alert("Administrator Successfully Registered!");
+                          setTimeout(function(){
+                            window.location.href="login.php";
+                        },2000);
     
-                    </script>
-                        ';
+                        </script>
+                    ';
                 }else{
                     echo '
                     <script type="text/javascript">
-                          $(document).ready(function(){
-                            Swal.fire({
-                              title: "Something went wrong! 😢",
-                              text: "Please try again",
-                              icon: "error",
-                              timer: 2000,
-                              showConfirmButton: false,
-                            }).then(function() {
-                              window.location.href="login.php";
-                            });
-                          });
+                        alert("Administrator Register Error!");
+                          setTimeout(function(){
+                            window.location.href="login.php";
+                        },2000);
+    
                         </script>
-                       '; 
+                    ';
                 }
             }else{
                 $query = mysqli_query($conn, "INSERT INTO UnitKeselamatan (uk_id, uk_email, uk_password, uk_name) VALUES ('$user','$email','$password','$name')");
@@ -123,35 +112,23 @@
     
                     echo '
                     <script type="text/javascript">
-                    $(document).ready(function(){
-                    Swal.fire({
-                    title: "Account Created!",
-                    icon: "success",
-                    timer: 2000,
-                    showConfirmButton: false,
-                    }).then(function() {
-                    window.location.href="login.php";
-                    });
-                    });
+                        alert("Unit Keselamatan Successfully Registered!");
+                          setTimeout(function(){
+                            window.location.href="login.php";
+                        },2000);
     
-                    </script>
-                        ';
+                        </script>
+                    ';
                 }else{
                     echo '
                     <script type="text/javascript">
-                          $(document).ready(function(){
-                            Swal.fire({
-                              title: "Something went wrong! 😢",
-                              text: "Please try again",
-                              icon: "error",
-                              timer: 2000,
-                              showConfirmButton: false,
-                            }).then(function() {
-                              window.location.href="login.php";
-                            });
-                          });
+                        alert("Unit Keselamatan Register Error!");
+                          setTimeout(function(){
+                            window.location.href="login.php";
+                        },2000);
+    
                         </script>
-                       '; 
+                    ';
                 }
             }
         }
@@ -172,67 +149,41 @@ include '../includes/header.php';
 </header>
 <body>
 <form action="Register.php" method="POST">
-<div class="form" style="border: 1px solid red; margin-top:30vh;">
-            <div class="container">
-                <div class="row">
-                    <div class="col"></div>
-                    <div class="col" style="">
-                        <h1 class ="title">REGISTER</h1>
-                    </div>
-                    <div class="col"></div>
-                </div>
+    <div class="row">
+        <div class="col leftcol">
 
-                <div class="row">
-                    <div class="col"></div>
-                    <div class="col" style="">
-                        <input type="text" name="name" placeholder="Name..." required/>
-                    </div>
-                    <div class="col"></div>
-                </div>
-
-                <div class="row">
-                    <div class="col"></div>
-                    <div class="col" style="">
-                        <input type="email" name="email" placeholder="Email..." required/>
-                    </div>
-                    <div class="col"></div>
-                </div>
-
-                <div class="row">
-                    <div class="col"></div>
-                    <div class="col">
-                        <input type="password" name="password" placeholder="Password..." required/>
-                    </div>
-                    <div class="col"></div>
-                </div>
-                <div class="row ">
-                    <div class="col"></div>
-                    <div class="col">
-                        <select class="form-select" id="userType" aria-label="Default select example" name="userType">
-                        <option id="Student" value="Student" selected>Student</option>
-                        <option id="Administrator" value="Administrator">Administrator</option>
-                        <option id="Unit Keselamatan" value="Unit Keselamatan">Unit Keselamatan</option>
-                        </select>
-                    </div>
-                    <div class="col"></div>
-                </div>
-                <div class="row">
-                    <div class="col"></div>
-                    <div class="col">
-                        <input name="submit" type="submit" value="Register" />
-                    </div>
-                    <div class="col"></div>
-                </div>
-                <div class="row">
-                    <div class="col"></div>
-                    <div class="col">
-                        <h5>Already have an account?<a href="Login.php">SIGN IN</a></h5>
-                    </div>
-                    <div class="col"></div>
-                </div>
         </div>
+        <div class="col midcol">
+        <div class="form middleForm text-center" style="margin-top:30vh;">
+
+            <h1 class ="title fw-bolder text-light">REGISTER</h1>
+
+            <input class="mb-2" type="text" name="name" placeholder="Name..." required/>
+
+            <input class="mb-2" type="email" name="email" placeholder="Email..." required/>
+
+            <input class="mb-2" type="password" name="password" placeholder="Password..." required/>
+            <div class="select">
+                <select class="form-select" id="userType" aria-label="Default select example" name="userType">
+                    <option id="Student" value="Student" selected>Student</option>
+                    <option id="Administrator" value="Administrator">Administrator</option>
+                    <option id="Unit Keselamatan" value="Unit Keselamatan">Unit Keselamatan</option>
+                </select>
+            <div class="select_arrow"></div>
+            </div>
             
-</div>
+
+            <input class="btn btn-primary" name="submit" type="submit" value="Register" />
+
+            <h5>Already have an account?<a href="Login.php">SIGN IN</a></h5>
+
+            </div>
+        </div>
+        <div class="col rightcol">
+
+        </div>
+    </div>
+                        
 </form>
 
 </body>

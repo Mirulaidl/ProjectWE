@@ -1,21 +1,41 @@
-<header>
-<nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
-    
-    <div class="container">
-        <a class="" href="#page-top">
-            <img src="https://brand.umpsa.edu.my/images/logo-umpsa-full-color2.png" alt="Home" style="height: 7vh;">
-        </a>
-        <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            Menu
-            <i class="fas fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#portfolio">Portfolio</a></li>
-                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">About</a></li>
-                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">Contact</a></li>
-            </ul>
-        </div>
+<style type="text/css">
+        .topnav {
+            margin-top: 0px;
+            margin-right: 0px;
+            margin-left: 0px;
+            background-color: #33ab9f;
+            overflow: hidden;
+            height: 20px;
+            padding: 8px;
+
+        }
+ 
+        .bottomnav {
+            margin-right: 0px;
+            margin-left: 0px;
+            background-color: #fff;
+            overflow: hidden;
+            height: 80px;
+            padding: 5px;
+
+        }
+
+        .img-nav{
+            margin-left: 10vw;
+        }
+ 
+    </style>
+<header class="fixed-top">
+<div class="topnav">
+        
+        <!-- <a class="active" href="#">Home</a>
+        <a href="#">Feature</a>
+        <a href="#">Deals</a>
+        <a href="#">Blog</a>
+        <a href="#" class="float-right">Login</a> -->
     </div>
-</nav>
+    <div class="bottomnav">
+        <img class="img-nav" src="../Asset/Img/Logo.svg" alt="Home" style="height: 7vh;">
+        
+    </div>
 </header>
