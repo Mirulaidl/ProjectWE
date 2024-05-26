@@ -32,6 +32,8 @@
         $merit = 0;
         $status = "Pending";
 
+        $encryptPass = md5($password);
+
 
         //Validate Email UMP
         if (empty($email)) {
@@ -54,7 +56,7 @@
         } else {
             if ($_POST['userType'] == "Student"){
             
-                $query = mysqli_query($conn, "INSERT INTO users (u_id, u_email, u_password, u_name, u_type, u_merit, u_status) VALUES ('$user','$email','$password','$name','$usertype','$merit','$status')");
+                $query = mysqli_query($conn, "INSERT INTO users (u_id, u_email, u_password, u_name, u_type, u_merit, u_status) VALUES ('$user','$email','$encryptPass','$name','$usertype','$merit','$status')");
                 
                 if ($query) {
     
@@ -81,7 +83,7 @@
                 
                 
             }else if ($_POST['userType'] == "Administrator"){
-                $query = mysqli_query($conn, "INSERT INTO Administrator (a_id, a_email, a_password, a_name) VALUES ('$user','$email','$password','$name')");
+                $query = mysqli_query($conn, "INSERT INTO Administrator (a_id, a_email, a_password, a_name) VALUES ('$user','$email','$encryptPass','$name')");
     
                 if ($query) {
     
@@ -106,7 +108,7 @@
                     ';
                 }
             }else{
-                $query = mysqli_query($conn, "INSERT INTO UnitKeselamatan (uk_id, uk_email, uk_password, uk_name) VALUES ('$user','$email','$password','$name')");
+                $query = mysqli_query($conn, "INSERT INTO UnitKeselamatan (uk_id, uk_email, uk_password, uk_name) VALUES ('$user','$email','$encryptPass','$name')");
     
                 if ($query) {
     
