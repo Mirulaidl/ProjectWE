@@ -6,10 +6,10 @@ require_once('../includes/connect.php');
 if (isset($_POST['submit'])) {
 
     $Admin = "Administrator";
-
+    $decryptedPass = md5($_POST['password']);
     if ($_POST['userType'] == $Admin){
 
-        $query = "SELECT * FROM Administrator WHERE a_email='" . $_POST['email'] . "' AND a_password='" . $_POST['password'] . "'";
+        $query = "SELECT * FROM Administrator WHERE a_email='" . $_POST['email'] . "' AND a_password='" . $decryptedPass . "'";
         $result = mysqli_query($conn, $query);
         if ($row = mysqli_fetch_assoc($result)) {
 
@@ -32,7 +32,7 @@ if (isset($_POST['submit'])) {
     }else if ($_POST['userType'] == "Student"){
         $Student = "Student";
         $Status = "Pending"; //tukar nanti bila admin boleh approve new user
-        $query = "SELECT * FROM users WHERE u_email='" . $_POST['email'] . "' AND u_password='" . $_POST['password'] . "' AND u_type = '$Student'" . " AND u_status = '$Status'";
+        $query = "SELECT * FROM users WHERE u_email='" . $_POST['email'] . "' AND u_password='" . $decryptedPass . "' AND u_type = '$Student'" . " AND u_status = '$Status'";
         $result = mysqli_query($conn, $query);
 
 
@@ -53,7 +53,7 @@ if (isset($_POST['submit'])) {
             echo "<script>alert('Invalid Login'); window.location='../Login.php';</script>";
         }
     }else{
-        $query = "SELECT * FROM UnitKeselamatan WHERE uk_email='" . $_POST['email'] . "' AND uk_password='" . $_POST['password'] . "'";
+        $query = "SELECT * FROM UnitKeselamatan WHERE uk_email='" . $_POST['email'] . "' AND uk_password='" . $decryptedPass . "'";
         $result = mysqli_query($conn, $query);
         if ($row = mysqli_fetch_assoc($result)) {
 
