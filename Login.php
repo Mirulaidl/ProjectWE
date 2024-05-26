@@ -4,19 +4,19 @@
 <title>Login</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="./Module1/style.css">
  <!-- Bootstrap -->
 <?php
-include '../includes/bootstrap.php'; 
+include './includes/bootstrap.php'; 
 ?>
 </head>
  <!-- Connect Css -->
  <!-- <link rel="stylesheet" type="text/css" href="assets/css/style2.scss"> -->
  <?php
-include '../includes/header.php';
+include 'header.php';
 ?>
 <body>
-    <form action="../functions/submitLogin.php" method="POST">
+    <form action="./functions/submitLogin.php" method="POST">
         <div class="row">
             <div class="col leftcol">
 

@@ -35,7 +35,7 @@
         <a href="#" class="float-right">Login</a> -->
     </div>
     <div class="bottomnav">
-        <img class="img-nav" src="../Asset/Img/Logo.svg" alt="Home" style="height: 7vh;">
+        <img class="img-nav" src="./Asset/Img/Logo.svg" alt="Home" style="height: 7vh;">
         
     </div>
 </header>

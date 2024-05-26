@@ -50,7 +50,7 @@ if (isset($_POST['submit'])) {
                     </script>
                 ';
         }else{
-            echo "<script>alert('Invalid Login'); window.location='../Module1/Login.php';</script>";
+            echo "<script>alert('Invalid Login'); window.location='../Login.php';</script>";
         }
     }else{
         $query = "SELECT * FROM UnitKeselamatan WHERE uk_email='" . $_POST['email'] . "' AND uk_password='" . $_POST['password'] . "'";

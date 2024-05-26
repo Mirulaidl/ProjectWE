@@ -13,7 +13,7 @@
 ?>
 </head>
 <?php
-    include '../includes/header.php';
+    include '../includes/headerLoggedIn.php';
 ?>
 <body>
     <div class="container" style="margin-top:15vh;">

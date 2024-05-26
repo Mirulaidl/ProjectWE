@@ -4,15 +4,15 @@
     <title>Register</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./Module1/style.css">
      <!-- Bootstrap -->
     <?php 
-    include '../includes/bootstrap.php';
+    include './includes/bootstrap.php';
     ?>
      <!-- Connect Css -->
 
     <?php
-    include '../includes/connect.php';
+    include './includes/connect.php';
 
     function is_valid_domain($email) {
         $allowed_domains = ['student.ump.edu.my', 'ump.edu.my'];
@@ -144,7 +144,7 @@
 </head>
 <header>
 <?php
-include '../includes/header.php'; 
+include 'header.php'; 
 ?>
 </header>
 <body>

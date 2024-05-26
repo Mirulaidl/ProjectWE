@@ -36,6 +36,12 @@
     </div>
     <div class="bottomnav">
         <img class="img-nav" src="../Asset/Img/Logo.svg" alt="Home" style="height: 7vh;">
-        
+            <a href="" class="usericon" id="dropdownUserButton" data-bs-toggle="dropdown" aria-expanded="false" style="float: right;">
+                <img src="../Asset/Img/user.svg" alt="User" style="float: right; margin-right: 15vw; margin-top: 1vh; height: 5vh;">
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="../Logout.php">Log Out</a></li>
+            </ul>
+
     </div>
 </header>
