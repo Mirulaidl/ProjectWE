@@ -44,9 +44,10 @@
                 </div>
                 
             </div>
-            <button type="button" class="col buttonbook">
+            
+            <a type="button" class="col buttonbook" href="../Module3/Booking.php">
                 <h1>Book Parking</h1>
-            </button>
+            </a>
         </div>
         <div class="row">
             <div class="col outer">
