@@ -122,7 +122,7 @@
 
                 function deleteSummon(s_id) {
                     // Perform delete operation or show confirmation dialog
-                    if (confirm("Are you sure you want to delete this parking area?")) {
+                    if (confirm("Are you sure you want to delete this traffic summon?")) {
                         // Redirect to deleteSummon.php with the id parameter
                         window.location.href = `deleteSummon.php?s_id=${s_id}`; // Use 's_id' in the URL parameter
                     }
