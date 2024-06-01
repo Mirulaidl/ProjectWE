@@ -38,16 +38,56 @@
                         </h1>
                     </div>
                     <div class="col">
-                        <div class="row"></div>
-                        <div class="row"></div>
+                        <?php
+                        $query = "SELECT * FROM vehicle WHERE u_id = '" . $_SESSION['User'] . "'";
+                        $result = mysqli_query($conn, $query);
+                            if($row = mysqli_fetch_assoc($result)){
+                                $plate = $row['v_plate_num'];
+                                $status = $row['v_status'];
+                                $_SESSION['VehicleStatus'] = $row['v_status'];
+                                echo '
+                                <div class="row">
+                                    ' . $plate . '
+                                </div>
+                                <div class="row">
+                                    ' . $status . '
+                                </div>
+                                ';
+                            }else{
+                                echo '<a href="registerVehicle.php" class="buttonClass" style="
+                                text-decoration: none;
+                                font-size:30px;
+                                width:30vw;
+                                height:15vh;
+                                border-width:1px;
+                                color:#fff;
+                                font-weight:bold;
+                                padding: 3px 30px 5px 30px;
+                                border-radius: 5px;
+                                background:#44c767;"
+                                >Register</a>';
+                            }
+                        ?>
+                        
                     </div>
                 </div>
                 
             </div>
+            <?php
+                $status = $_SESSION['VehicleStatus'];
+                if($status == "Pending"){
+                    echo '<button class="col buttonbook" onclick="location.href=\'../Module3/Booking.php\'">
+                            <h1>Book Parking</h1>
+                            
+                        </button>';
+                }else{
+                    echo '<button class="col buttonbook" onclick="location.href=\'../Module3/Booking.php\'">
+                            <h1>Book Parking</h1>
+                            
+                        </button>';
+                }
+            ?>
             
-            <a type="button" class="col buttonbook" href="../Module3/Booking.php">
-                <h1>Book Parking</h1>
-            </a>
         </div>
         <div class="row">
             <div class="col outer">

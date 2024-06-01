@@ -40,6 +40,7 @@
                 <img src="../Asset/Img/user.svg" alt="User" style="float: right; margin-right: 15vw; margin-top: 1vh; height: 5vh;">
             </a>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="../Profile/profile.php">Profile</a></li>
                 <li><a class="dropdown-item" href="../Logout.php">Log Out</a></li>
             </ul>
 
