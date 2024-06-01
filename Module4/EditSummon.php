@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Traffic Summon</title>
+    <title>Edit Traffic Summon</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style.css">
 
     <!-- Bootstrap -->
     <?php
-        session_start();
-       include '../includes/connect.php';
+       // session_start();
+       // include '../includes/connect.php';
         include '../includes/bootstrap.php'; 
     ?>
 
@@ -29,7 +29,7 @@
 
     </style>
 <body>
-    <form action="addSummon.php" method="POST">
+    <form action="updateSummon.php" method="POST">
         <div class="row">
             <div class="col leftcol">
             </div>
@@ -99,7 +99,7 @@
                         <div class="col">
                             <!--<input type="hidden" name="action" value="add">
                             <button class="btn btn-primary" type="submit">Add Summon</button>-->
-                            <input class="btn btn-primary" name="submit" type="submit" value="Add Summon" />
+                            <input class="btn btn-primary" name="submit" type="submit" value="Update Summon" />
                         </div>
                     </div>
                 </div>

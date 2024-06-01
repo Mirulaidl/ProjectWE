@@ -84,7 +84,7 @@
 
                         <div class="col">
                             <div class="btn btn-primary">
-                                <form action="summon.php" method="POST" style="text-align: left;">
+                                <form action="deleteSummon.php" method="POST" style="text-align: left;">
                                     <input type="hidden" name="s_id" value="<?php echo htmlspecialchars($s_id); ?>">
                                     <input type="hidden" name="action" value="delete">
                                     <button type="submit" class="btn btn-primary">Delete</button>

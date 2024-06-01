@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="style.css">
     <!-- Bootstrap -->
     <?php
-        //session_start();
-        //include '../includes/connect.php';
+        session_start();
+        include '../includes/connect.php';
         include '../includes/bootstrap.php';
     ?>
 </head>
