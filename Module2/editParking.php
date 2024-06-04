@@ -7,36 +7,38 @@
 <link rel="stylesheet" href="parking.css">
 <!-- Bootstrap -->
 <?php include '../includes/bootstrap.php'; ?>
+
 </head>
 <body>
     <?php include '../includes/headerLoggedIn.php'; ?>
 
-    <form>
+    <form method="POST" action="updateParking.php">
         <div class="row">
             <div class="col leftcol"></div>
             <div class="col midcol">
                 <div class="form middleForm text-center">
                     <h1>Edit Parking Area</h1>
                     <div>
+
+                    <br>
+                        <p class="p1">Parking: </p>
+                        <input type="text"  id="p_id" name="p_id" value="">
                         <p class="p1">Area: </p>
                         <div class="select">
-                            <select class="form-select" id="area" aria-label="Default select example" name="area">
-                                <option id="B1" value="B1" selected>B1</option>
-                                <option id="B2" value="B2">B2</option>
-                                <option id="B3" value="B3">B3</option>
+                            <select class="form-select" id="p_area" aria-label="Default select example" name="p_area">
+                                <option id="p_area" value="B1" selected>B1</option>
+                                <option id="p_area" value="B2">B2</option>
+                                <option id="p_area" value="B3">B3</option>
                             </select>
                             <div class="select_arrow"></div>
                         </div>
 
-                        <br>
-                        <p class="p1">Parking: </p>
-                        <input type="text"  id="parking" name="parking" placeholder="STD66">
 
                         <p class="p1">Status: </p>
                         <div class="select">
-                            <select class="form-select" id="status" aria-label="Default select example" name="status">
-                                <option id="Available" value="Available" selected>Available</option>
-                                <option id="Occupied" value="Occupied">Occupied</option>
+                            <select class="form-select" id="p_status" aria-label="Default select example" name="p_status">
+                                <option id="p_status" value="Available" selected>Available</option>
+                                <option id="p_status" value="Occupied">Occupied</option>
                             </select>
                             <div class="select_arrow"></div>
                         </div>
@@ -46,7 +48,7 @@
                         <div class="row">
                             <div class="col"></div>
                             <div class="col text-center">
-                                <input class="btn btn-primary" name="Confirm" type="Confirm" value="Confirm" />
+                                <input class="btn btn-primary" name="submit" type="submit" value="Confirm" />
                             </div>
                             <div class="col"></div>
                         </div>

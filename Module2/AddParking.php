@@ -11,7 +11,7 @@
 <body>
     <?php include '../includes/headerLoggedIn.php'; ?>
 
-    <form>
+    <form method="POST" action="insertParking.php">
         <div class="row">
             <div class="col leftcol"></div>
             <div class="col midcol">
@@ -19,25 +19,29 @@
                     <h1>Add Parking Area</h1>
                     <div>
                         <p class="p1">Area: </p>
-                        <input type="text"  id="area" name="area" >
+                        <input type="text"  id="p_area" name="p_area" >
 
 
                         <br>
                         <p class="p1">Parking: </p>
-                        <input type="text"  id="parking" name="parking" >
+                        <input type="text"  id="p_id" name="p_id" >
                         <br>
 
                         <p class="p1">Status: </p>
-                        <input type="text"  id="status" name="status" >
+                        <div class="select">
+                            <select class="form-select" id="p_status" aria-label="Default select example" name="p_status">
+                                <option id="Available" value="Available" selected>Available</option>
+                                <option id="Occupied" value="Occupied">Occupied</option>
+                            </select>
 
-
+</div>
                         <div class="row">
                        
                             <div class="col"></div>
                             <br>
                             <div class="col text-center">
                             <br>
-                                <input class="btn btn-primary" name="Add" type="Add" value="Add" />
+                                <input class="btn btn-primary" name="submit" type="submit" value="Add" />
                             </div>
                             <div class="col"></div>
                         </div>
