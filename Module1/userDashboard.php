@@ -44,7 +44,11 @@
                             if($row = mysqli_fetch_assoc($result)){
                                 $plate = $row['v_plate_num'];
                                 $status = $row['v_status'];
-                                $_SESSION['VehicleStatus'] = $row['v_status'];
+                                if($row['v_status'] != NULL){
+                                    $_SESSION['VehicleStatus'] = $row['v_status'];
+                                    $status = $_SESSION['VehicleStatus'];
+                                }
+                                
                                 echo '
                                 <div class="row">
                                     ' . $plate . '
@@ -74,8 +78,13 @@
                 
             </div>
             <?php
-                $status = $_SESSION['VehicleStatus'];
+            $status = "";
                 if($status == "Pending"){
+                    echo '<button class="col buttonbook" onclick="location.href=\'../Module3/Booking.php\' disabled">
+                            <h1>Book Parking</h1>
+                            
+                        </button>';
+                }else if ($status == "Approved"){
                     echo '<button class="col buttonbook" onclick="location.href=\'../Module3/Booking.php\'">
                             <h1>Book Parking</h1>
                             
