@@ -5,7 +5,7 @@ include '../includes/connect.php';
 try {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-        $uid = 'cd22098';
+        $uid = $_SESSION['User'];
         $vid = $_POST['v_id'];
         $pid = $_POST['p_id'];
         $qr_code = 'test';
@@ -85,7 +85,33 @@ try {
 
 <body>
     <div class="row">
-        <div class="col leftcol"></div>
+        <div class="col leftcol">
+            
+            <div class="form middleForm text-center" style="margin-top:25vh;">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <?php 
+                    $allarea = mysqli_query($conn, "SELECT * from ParkingSpace");
+                    while($c = mysqli_fetch_array($allarea)){
+                ?>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="<?php echo $c['p_id']?>" data-bs-toggle="tab" data-bs-target="#<?php echo $c['p_id']?>" type="button" role="tab" aria-controls="contact" aria-selected="false"><?php echo $c['p_id']?></button>
+                </li>
+                <?php } ?>
+                </ul>
+
+                <div class="tab-content" id="myTabContent">
+                    <?php 
+                        $allarea = mysqli_query($conn, "SELECT * from ParkingSpace");
+                        while($c = mysqli_fetch_array($allarea)){
+                    ?>
+                    <div class="tab-pane fade" id="<?php echo $c['p_id']?>" role="tabpanel" aria-labelledby="contact-tab">
+                            <!-- TAK SIAP DISINI -->
+                    </div>
+                    <?php } ?>
+                </div>
+            </div>
+
+        </div>
         <div class="col midcol">
             <div class="form middleForm text-center" style="margin-top:25vh;">
                 <h1 class="title fw-bolder text-light">Making Booking</h1>
@@ -94,11 +120,13 @@ try {
                     <input class="mb-2" type="text" id="v_id" name="v_id" placeholder="Enter your Vehicle Plate No" required /><br>
                     <label for="p_id">Parking Space:</label><br>
                     <div class="select">
-                        <select id="p_id" name="p_id" required>
-                            <option value="" disabled selected>Select a space</option>
-                            <option value="B1">B1</option>
-                            <option value="B2">B2</option>
-                            <option value="B3">B3</option>
+                        <select class="form-select" id="p_id" aria-label="Default select example" name="p_id">
+                            <?php 
+                                $allarea = mysqli_query($conn, "SELECT * from ParkingSpace");
+                                while($c = mysqli_fetch_array($allarea)){
+                            ?>
+                                <option value="<?php echo $c['p_id']?>"><?php echo $c['p_id']?></option>
+                            <?php } ?>
                         </select>
                         <div class="select_arrow"></div>
                     </div><br>
@@ -110,7 +138,6 @@ try {
                 </form>
             </div>
         </div>
-        <div class="col rightcol"></div>
     </div>
 
 </body>

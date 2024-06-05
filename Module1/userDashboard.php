@@ -116,12 +116,12 @@
 </body>
 
 <script>
-    $(document).ready(function(){
-        var UserID = document.getElementById('userID').value;
+    // $(document).ready(function(){
+    //     var UserID = document.getElementById('userID').value;
 
-        $.post
+    //     $.post
 
-    })
+    // })
 </script>
 
 </html>
