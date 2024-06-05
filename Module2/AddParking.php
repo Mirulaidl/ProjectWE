@@ -23,9 +23,6 @@
 
 
                         <br>
-                        <p class="p1">Parking: </p>
-                        <input type="text"  id="p_id" name="p_id" >
-                        <br>
 
                         <p class="p1">Status: </p>
                         <div class="select">
@@ -33,8 +30,7 @@
                                 <option id="Available" value="Available" selected>Available</option>
                                 <option id="Occupied" value="Occupied">Occupied</option>
                             </select>
-
-</div>
+                        </div>
                         <div class="row">
                        
                             <div class="col"></div>

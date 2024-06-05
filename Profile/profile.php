@@ -80,7 +80,7 @@ include '../includes/headerLoggedIn.php';
             </ul>
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                    <form action="formAccountSettings" method="POST" enctype="multipart/form-data">
+                    <form method="POST" enctype="multipart/form-data">
                         <div class="row">
                             <div class="mb-3 col-md-6">
                               <label for="name" class="form-label">Name</label>
@@ -237,8 +237,8 @@ include '../includes/headerLoggedIn.php';
 
     if (isset($_POST['btnDeactivate'])){
         $uid = $_SESSION['User'];
-
-        $queryd = "DELETE from `users` WHERE `u_id` = $uid";
+        // $queryv = "DELETE from vehicle WHERE u_id = '$uid'";
+        $queryd = "DELETE from users WHERE u_id = '$uid'";
         $result = mysqli_query($conn, $queryd);
 
         if ($result) {

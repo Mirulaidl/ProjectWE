@@ -11,6 +11,7 @@
        // session_start();
        // include '../includes/connect.php';
         include '../includes/bootstrap.php'; 
+        include '../includes/connect.php'; 
     ?>
 
 </head>
@@ -21,6 +22,7 @@
         include '../includes/headerLoggedIn.php';
     ?>
     
+    
     <style>
         label {
             color: white;
@@ -28,8 +30,15 @@
         }
 
     </style>
+<?php
+    if (isset($_GET['s_id'])) {
+        $sid = $_GET['s_id'];
+        echo "<script>console.log('Debug Objects: " . $s_id . "' );</script>";
+        $query = mysqli_query($conn, "SELECT * FROM Summon WHERE s_id = '$sid'");
+        while ($row = mysqli_fetch_array($query)){
+?>
 <body>
-    <form action="updateSummon.php" method="POST">
+    <form method="POST">
         <div class="row">
             <div class="col leftcol">
             </div>
@@ -47,7 +56,7 @@
                     
                     <div class="row">
                         <div class="col">
-                            <input type="v_id" id="v_id" name="v_id" placeholder="Enter your Vehicle Plate No" required/>
+                            <input type="v_id" id="v_id" name="v_id" value="<?php echo $row['v_id']?>" disabled/>
                         </div>
                     </div>
 
@@ -89,7 +98,7 @@
 
                     <div class="row">
                         <div class="col">
-                            <input type="text" id="s_note" name="s_note" required>
+                            <input type="text" id="s_note" name="s_note" value="<?php echo $row['s_note']?>" required>
                         </div>
                     </div>
 
@@ -113,3 +122,37 @@
     
 </body>
 </html>
+<?php
+        if ($_SERVER["REQUEST_METHOD"] == "POST"){
+            $sid = $_GET['s_id'];
+            $v_id = $_POST['v_id'];
+            $s_violation = $_POST['s_violation'];
+            $s_date = $_POST['s_date'];
+            $s_note = $_POST['s_note'];
+            $queryupdate = mysqli_query($conn, "UPDATE Summon SET s_violation = '$s_violation', s_note = '$s_note', s_date = '$s_date' WHERE s_id = '$sid'");
+            if($queryupdate){
+                echo '
+                        <script type="text/javascript">
+                            alert("Summon have been updated!");
+                              setTimeout(function(){
+                                window.location.href="ukDashboard.php";
+                            },1000);
+        
+                            </script>
+                        ';
+            }else{
+                echo '
+                        <script type="text/javascript">
+                            alert("There is something wrong!");
+                              setTimeout(function(){
+                                window.location.href="ukDashboard.php";
+                            },1000);
+        
+                            </script>
+                        ';
+            }
+        }
+
+        }
+    }
+?>

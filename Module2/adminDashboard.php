@@ -7,8 +7,8 @@
 <link rel="stylesheet" href="styleAdmin.css">
 <!-- Bootstrap -->
 <?php 
-    session_start();
-    include '../includes/connect.php';
+    session_start(); // session ni utk pakai data sape yang login jangan lupa connectkan navigation utk mana2 page jangan pakai link je utk masuk// masuk pakai login WAJIB
+    include '../includes/connect.php'; //connection database
     include '../includes/bootstrap.php';
 ?>
 </head>
@@ -25,9 +25,11 @@
                 <h3>User Profile</h3>
             </button>
 
-            <button type="button" class="col buttonAdmin">
+            <a href="ViewParkingArea.php">AAAAAA</a>
+
+            <!-- <button class="col buttonAdmin"  onclick="location.href=\'test3.php\'">
               <h3>Parking Area</h3>
-            </button>
+            </button> -->
 
             <button type="button" class="col buttonAdmin">
                 <h3>Vehicle Registration</h3>

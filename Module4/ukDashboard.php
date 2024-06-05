@@ -117,7 +117,7 @@
 
                 function editSummon(s_id) {
                     // Redirect to the edit page with the specified id
-                    window.location.href = `editSummon.php?id=${s_id}`;
+                    window.location.href = `editSummon.php?s_id=${s_id}`;
                 }
 
                 function deleteSummon(s_id) {
@@ -125,6 +125,7 @@
                     if (confirm("Are you sure you want to delete this traffic summon?")) {
                         // Redirect to deleteSummon.php with the id parameter
                         window.location.href = `deleteSummon.php?s_id=${s_id}`; // Use 's_id' in the URL parameter
+                        
                     }
                 }
             </script>

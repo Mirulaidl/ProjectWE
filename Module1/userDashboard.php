@@ -32,6 +32,8 @@
                         <h1>
                             <?php 
                                 $username = $_SESSION['UserName'];
+                                $uid = $_SESSION['User'];
+                                echo '<input id="userID" value="' . $uid . '" hidden>';
                                 // $username = getname($userID);
                                 echo "$username";
                             ?>
@@ -104,14 +106,22 @@
                     <p>Fakulti Komputeran Parking Area</p>
                     <img src="../Asset/Img/Parking.svg" alt="Parking" style="height: 55vh;">
                 </div>
-                <div class="row">
 
-                </div>
             </div>
-            <div class="col outer">
+            <div id="graph" class="col outer">
 
             </div>
         </div>
     </div>
 </body>
+
+<script>
+    $(document).ready(function(){
+        var UserID = document.getElementById('userID').value;
+
+        $.post
+
+    })
+</script>
+
 </html>
