@@ -19,31 +19,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Execute the query
     if ($query) {
-        echo '
-                    <script type="text/javascript">
-                        alert("Summon Successfully added!");
-                          setTimeout(function(){
-                            window.location.href="ukDashboard.php";
-                        },2000);
-    
-                        </script>
-                    ';
+        // Store form data in session variables
+        $_SESSION['v_id'] = $vid;
+        $_SESSION['s_violation'] = $sviolation;
+        $_SESSION['s_date'] = $sdate;
+        $_SESSION['s_note'] = $snote;
 
+        // Redirect to receipt.php
+        header('Location: receipt.php');
+        exit();
     } else {
         echo '
-                    <script type="text/javascript">
-                        alert("There is something wrong!");
-                          setTimeout(function(){
-                            window.location.href="trafficSummon.php";
-                        },2000);
-    
-                        </script>
-                    ';
+            <script type="text/javascript">
+                alert("There is something wrong!");
+                setTimeout(function(){
+                    window.location.href="trafficSummon.php";
+                }, 2000);
+            </script>
+        ';
     }
 } else {
     echo "Form submission method not valid.";
 }
-
-// // Close the database connection //jangan mengarut
-// $conn->close();
 ?>
