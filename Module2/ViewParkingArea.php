@@ -9,6 +9,8 @@
     <?php include '../includes/connect.php'; ?>
     <!-- Include CSS -->
     <link rel="stylesheet" href="parking.css">
+    <!-- Include QRCode.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
     <?php include '../includes/headerLoggedIn.php'; ?> 
@@ -52,6 +54,7 @@
                         <th>Spot</th>
                         <th>Area</th>
                         <th>Status</th>
+                        <th>QR Code</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -112,6 +115,7 @@
                             <td>${row.ps_name}</td>
                             <td>${row.p_id}</td>
                             <td>${row.ps_status}</td>
+                            <td><div id="qrcode-${row.ps_id}"></div></td>
                             <td>
                                 <button class="btn Edit-button" onclick="editParkingSpot('${row.ps_id}')">Edit</button>
                                 <button class="btn Delete-button" onclick="deleteParkingSpot('${row.ps_id}')">Delete</button>
@@ -119,12 +123,19 @@
                         `;
 
                         tableBody.appendChild(newRow);
+
+                        // Generate QR code
+                        new QRCode(document.getElementById(`qrcode-${row.ps_id}`), {
+                            text: `Parking Spot: ${row.ps_name}, Area: ${row.p_id}`,
+                            width: 128,
+                            height: 128
+                        });
                     });
                 })
                 .catch(error => console.error('Error:', error));
         }
 
-        // Call fetchData() when the page loads to populate the table
+        // Call fetchDataSpot() when the page loads to populate the table
         fetchDataSpot();
 
         function editParking(p_id) {
