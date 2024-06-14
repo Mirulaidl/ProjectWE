@@ -46,6 +46,7 @@
                             if($row = mysqli_fetch_assoc($result)){
                                 $plate = $row['v_plate_num'];
                                 $status = $row['v_status'];
+                                $_SESSION['VehiclePlate'] = $row['v_plate_num'];
                                 if($row['v_status'] != NULL){
                                     $_SESSION['VehicleStatus'] = $row['v_status'];
                                     $status = $_SESSION['VehicleStatus'];

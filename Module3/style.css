@@ -46,8 +46,8 @@ input {
      color: #000000;
      border-style: solid;
      border-radius: 7px;
-     width: 400px;
-     height: 50px;
+     /* width: 50vw;
+     height: 50px; */
 }
 
 .middleForm{
@@ -110,4 +110,29 @@ input {
     border-top-color: #ebebeb;
 }
 
+[type=radio] { 
+    position: absolute;
+    cursor: pointer;
+    opacity: 0;
+    width: 5vw;
+    height: 4vh;
+  }
+
+input[type="radio"] + svg{
+	-webkit-transition: all 0.2s;
+	transition: all 0.2s;
+    width: 5vw;
+    
+}
+
+
+input.pEmpty:hover + svg,
+input.pEmpty:checked + svg,
+input.pEmpty:focus + svg {
+    fill: rgb(31, 253, 2); /* Change to the desired green color */
+}
+
+/* svg{
+    fill: rgb(31, 253, 2);
+} */
 

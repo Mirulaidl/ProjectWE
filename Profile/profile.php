@@ -64,7 +64,8 @@ include '../includes/headerLoggedIn.php';
         
         ?>
 <body>
-    <div class="row">
+<div class="background-image">
+<div class="row">
         <div class="col"></div>
         <div class="colmid col">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -72,11 +73,12 @@ include '../includes/headerLoggedIn.php';
                     <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Profile</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Summon</button>
+                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Vehicle</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Contact</button>
+                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Summon</button>
                 </li>
+                
             </ul>
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -118,8 +120,137 @@ include '../includes/headerLoggedIn.php';
                         </div>
                     </form>
                 </div>
-                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
-                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <table id="summonTable">
+                        <thead>
+                            <tr>
+                                <th>Vehicle Plate</th>
+                                <th>Date Issued</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Data will be dynamically inserted here -->
+                        </tbody>
+                    </table>
+                    <script>
+                // Function to fetch data from the database
+                function fetchData() {
+                    fetch('getData.php')
+                        .then(response => response.json())
+                        .then(data => {
+                            const tableBody = document.querySelector('#summonTable tbody');
+                            tableBody.innerHTML = ''; // Clear existing rows
+
+                            data.forEach(row => {
+                                const newRow = document.createElement('tr');
+                                newRow.innerHTML = `
+                                    <td>${row.v_id}</td>
+                                    <td>${row.s_date}</td>
+                                     <td>
+                                         <button id="vSummon" type="button" class="view-button btn btn-primary" onclick="viewSummon('${row.v_id}', '${row.s_date}', '${row.s_violation}', '${row.s_note}')" data-bs-toggle="modal" data-bs-target="#summonModal">View</button>
+                                     </td>
+                                `;
+
+                                tableBody.appendChild(newRow);
+                            });
+                        })
+                        .catch(error => console.error('Error:', error));
+                }
+
+                // Call fetchData() when the page loads to populate the table
+                fetchData();
+
+                function viewSummon(v_id, s_date, s_violation, s_note) {
+                    // Redirect to the edit page with the specified id
+                    document.getElementById('modalVId').value = v_id;
+                    document.getElementById('modalSDate').value = s_date;
+                    document.getElementById('modalViolation').value = s_violation;
+                    document.getElementById('modalNote').value = s_note;
+
+                }
+
+                // document.addEventListener('DOMContentLoaded', fetchData);
+
+            </script>
+                </div>
+
+                <!-- Vehicle -->
+                <?php 
+                    $uid = $_SESSION['User'];
+
+                    $l = mysqli_query($conn, "SELECT * FROM vehicle WHERE u_id = '$uid'");
+                
+                    while ($row = mysqli_fetch_array($l)){
+                ?>
+                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                    <form method="POST" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                              <label for="plate" class="form-label">Plate</label>
+                              <input class="form-control" type="text" id="plate" name="plate" value="<?php echo $row['v_plate_num']; ?>" Disabled />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                              <label for="email" class="form-label">Type</label>
+                              <input class="form-control" type="text" id="type" name="type" value="<?php echo $row['v_type']; ?>" Disabled/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                              <label for="brand" class="form-label">Brand</label>
+                              <input class="form-control" type="text" id="brand" name="brand" value="<?php echo $row['v_brand']; ?>"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                              <label for="color" class="form-label">Color</label>
+                              <input class="form-control" type="text" id="color" name="color" value="<?php echo $row['v_color']; ?>"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <button id="btnSave" name="btnSave" type="submit" class="btn btn-primary me-2">Save changes</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <?php 
+
+                    if (isset($_POST['btnSave'])) {
+                        $uid = $_SESSION['User'];
+                        $brand = $_POST['brand'];
+                        $color = $_POST['color'];
+
+                        $querysave = mysqli_query($conn, "UPDATE vehicle SET v_brand = '$brand', v_color = '$color' WHERE u_id = '$uid'");
+                        if ($querysave) {
+                            echo '
+                                    <script type="text/javascript">
+                                        alert("Vehicle have been updated!");
+                                          setTimeout(function(){
+                                            window.location.href="profile.php";
+                                        },1000);
+                    
+                                        </script>
+                                    ';
+                        } else {
+                            echo '
+                                    <script type="text/javascript">
+                                        alert("Something went wrong!");
+                                          setTimeout(function(){
+                                            window.location.href="profile.php";
+                                        },1000);
+                    
+                                        </script>
+                                    ';
+                        }
+
+                    }
+
+                }?>
+                <!-- End Vehicle -->
+
             </div>
         </div>
         <div class="col"></div>
@@ -172,6 +303,46 @@ include '../includes/headerLoggedIn.php';
             </div>
         </div>
     </div>
+
+    <!-- MODAL Summon-->
+    <div class="modal fade" id="summonModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Summon Details</h5>
+                    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button> -->
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="modalVId">ID</label>
+                            <input type="text" class="form-control" id="modalVId" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="modalSDate">Date</label>
+                            <input type="text" class="form-control" id="modalSDate" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="modalViolation">Violation</label>
+                            <input type="text" class="form-control" id="modalViolation" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="modalNote">Note</label>
+                            <textarea class="form-control" id="modalNote" rows="3" readonly></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
 
     <!-- CRUD -->
     <?php 

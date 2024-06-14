@@ -16,9 +16,6 @@ if ($bookingId) {
     $result = $stmt->get_result();
     $booking = $result->fetch_assoc();
 
-    if (!$booking || $booking['u_id'] != $_SESSION['users']) {
-        die("Booking not found or you do not have permission to view this booking.");
-    }
 
     $stmt->close();
 } else {
@@ -75,7 +72,7 @@ $conn->close();
 <body>
 
     <div class="container text-center">
-        <div class="booking-details mx-auto" style="margin-top:10vh;">
+        <div class="booking-details mx-auto" style="margin-top:20vh;">
             <h1>Your Booking Details</h1>
             <div class="overview">
                 <p><strong>Vehicle Plate No.:</strong> <?php echo $booking['v_id']; ?></p>
