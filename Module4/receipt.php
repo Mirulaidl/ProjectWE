@@ -11,6 +11,7 @@
         include '../includes/connect.php';
         include '../includes/bootstrap.php';
     ?>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 
 <?php
@@ -24,6 +25,7 @@
         $violation_type = isset($_SESSION['s_violation']) ? htmlspecialchars($_SESSION['s_violation']) : '';
         $violation_date = isset($_SESSION['s_date']) ? htmlspecialchars($_SESSION['s_date']) : '';
         $violation_notes = isset($_SESSION['s_note']) ? htmlspecialchars($_SESSION['s_note']) : '';
+        $s_id = isset($_SESSION['s_id']) ? htmlspecialchars($_SESSION['s_id']) : '';
     ?>
 
         <div class="row">
@@ -72,9 +74,7 @@
                         </div>
 
                         <div class="col">
-                            <div class="qr-code">
-                                <img src="generate_qr.php?s_id=<?php echo htmlspecialchars($s_id); ?>" alt="QR Code">
-                            </div>
+                            <div class="qr-code" id="qrcode"></div>
                         </div>
                     </div>
 
@@ -87,14 +87,14 @@
                             </div>
                         </div>
 
-                        <div class="col">
-                            <div class="btn btn-primary">
-                                <form action="deleteSummon.php" method="POST" style="text-align: left;">
-                                    <input type="hidden" name="action" value="delete">
-                                    <button type="submit" class="btn btn-primary">Delete</button>
-                                </form>
-                            </div>
-                        </div>
+                        <!--<div class="col">-->
+                             <!--<div class="btn btn-primary">-->
+                                 <!--<form action="deleteReceipt.php" method="POST" style="text-align: left;">-->
+                                     <!--<input type="hidden" name="s_id" value="<?php echo $s_id; ?>">-->
+                                     <!--<button type="submit" class="btn btn-primary">Delete</button>-->
+                                 <!--</form>-->
+                             <!--</div>-->
+                         <!--</div>-->
                     </div>
 
                     
@@ -105,6 +105,16 @@
                         </div>
                         
         </div>
+        <script>
+            // Generate QR code with link to details.php
+            var s_id = "<?php echo $s_id; ?>";
+            var url = "details.php?s_id=" + s_id;
+            new QRCode(document.getElementById("qrcode"), {
+                text: url,
+                width: 128,
+                height: 128
+            });
+        </script>
 
 
 </body>

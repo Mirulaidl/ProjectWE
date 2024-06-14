@@ -119,7 +119,7 @@
 
             <div > 
                 <p>Summon Issued</p>
-                    <table id="summonTable" >
+                    <table id="summonTable" class="table table-striped caption-top">
                         <thead>
                             <tr>
                                 <th>Plate No</th>
