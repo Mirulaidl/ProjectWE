@@ -66,6 +66,21 @@
             </div>
             <div class="col outer">
                 <canvas id="parkingSpotChart"></canvas>
+                
+                <h3 class="text-center">Total Booking</h3>
+                <?php $sql = "SELECT COUNT(b_id) as booking_count FROM booking";
+                        $result = $conn->query($sql);
+
+                        $booking_count = 0;
+                        if ($result->num_rows > 0) {
+                            while($row = $result->fetch_assoc()) {
+                                $booking_count = $row["booking_count"];
+                            }
+                        } else {
+                            echo "0 results";
+                        }
+                ?>
+                <canvas id="bookingChart"></canvas>
             </div>
         </div>
     </div>
@@ -116,6 +131,49 @@
 
         // Call fetchParkingSpotData() when the page loads
         fetchParkingSpotData();
+
+        // Function to fetch parking booking data and create chart
+          var bookingCount = <?php echo $booking_count; ?>;
+
+        // Prepare data for Chart.js
+        var labels = ["Total Bookings"];
+        var data = {
+            labels: labels,
+            datasets: [{
+                label: 'Number of Bookings',
+                data: [bookingCount],
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        };
+
+        // Configure the chart
+        var config = {
+            type: 'bar',
+            data: data,
+            options: {
+                scales: {
+                   y: {
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 1,
+                        callback: function(value) {
+                            if (Number.isInteger(value)) {
+                                return value;
+                            }
+                        }
+                    }
+                }
+                }
+            }
+        };
+
+        // Render the chart
+        var bookingChart = new Chart(
+            document.getElementById('bookingChart'),
+            config
+        );
     </script>
 </body>
 </html>

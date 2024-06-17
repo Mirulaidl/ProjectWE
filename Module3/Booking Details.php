@@ -1,6 +1,7 @@
 <?php
 session_start();
 include '../includes/connect.php';
+include '../phpqrcode/qrlib.php';
 
 // Fetch booking details based on the booking ID passed in the URL
 $bookingId = isset($_GET['b_id']) ? $_GET['b_id'] : '';
@@ -38,6 +39,14 @@ if ($bookingDurationResult->num_rows > 0) {
 } else {
     echo 'BookingDuration data not found.';
 }
+
+// Generate QR Code for the booking ID
+$ecc = 'L'; 
+$pixel_Size = 5; 
+$frame_Size = 5; 
+$qrCodeFile = '../Asset/qrimages/' . uniqid() . ".png";
+$qrCodeData = $booking['v_id'] . ' ' . $booking['p_id'];
+QRcode::png($qrCodeData, $qrCodeFile, $ecc, $pixel_Size, $frame_Size);
 
 $stmt2->close();
 $conn->close();
@@ -80,7 +89,7 @@ $conn->close();
                 <p><strong>Start:</strong> <?php echo $bookingDurationData['bd_start_time']; ?></p>
                 <p><strong>End:</strong> <?php echo $bookingDurationData['bd_end_time']; ?></p>
                 <div class="qr-code">
-                    <img src="generate_qr_code.php?data=<?php echo urlencode($bookingDurationData['bd_start_time']); ?>" alt="QR Code">
+                    <img src='<?php echo $qrCodeFile; ?>' alt='QR Code'>
                 </div>
             </div>
             <button class="btn btn-primary" type="submit" onclick="window.location.href = 'EditBooking.php?b_id=<?php echo $booking['b_id']; ?>'">Edit</button>
