@@ -27,9 +27,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style4.css">
 
-    
-
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
 </head>
 
     <?php
@@ -118,13 +118,14 @@
             <div class="col outer">
 
             <div > 
-                <p>Summon Issued</p>
+                <p>SUMMON ISSUED</p>
                     <table id="summonTable" class="table table-striped caption-top">
                         <thead>
                             <tr>
                                 <th>Plate No</th>
                                 <th>Date Issued</th>
                                 <th>Action</th>
+                                <th>Receipt</th>
                             </tr>
                         </thead>
 
@@ -136,6 +137,12 @@
             </div>
 
             <script>
+
+                // Function to format date without time
+                function formatDate(dateString) {
+                    const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
+                    return new Date(dateString).toLocaleDateString(undefined, options);
+                }
                
                 // Function to fetch data from the database
                 function fetchData() {
@@ -149,11 +156,12 @@
                                 const newRow = document.createElement('tr');
                                 newRow.innerHTML = `
                                     <td>${row.v_id}</td>
-                                    <td>${row.s_date}</td>
+                                    <td>${formatDate(row.s_date)}</td>
                                     <td>
                                         <button class="Edit-button" onclick="editSummon('${row.s_id}')">Edit</button>
                                         <button class="Delete-button" onclick="deleteSummon('${row.s_id}')">Delete</button>
                                     </td>
+                                    <td> <a href="receipt.php?s_id=${row.s_id}" class="btn btn-primary">View</a></td>
                                 `;
 
                                 tableBody.appendChild(newRow);
