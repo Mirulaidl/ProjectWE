@@ -1,7 +1,6 @@
 <?php
 session_start();
 include '../includes/connect.php';
-include '../phpqrcode/qrlib.php';
 
 // Fetch booking details based on the booking ID passed in the URL
 $bookingId = isset($_GET['b_id']) ? $_GET['b_id'] : '';
@@ -40,14 +39,6 @@ if ($bookingDurationResult->num_rows > 0) {
     echo 'BookingDuration data not found.';
 }
 
-// Generate QR Code for the booking ID
-$ecc = 'L'; 
-$pixel_Size = 5; 
-$frame_Size = 5; 
-$qrCodeFile = '../Asset/qrimages/' . uniqid() . ".png";
-$qrCodeData = $booking['v_id'] . ' ' . $booking['p_id'];
-QRcode::png($qrCodeData, $qrCodeFile, $ecc, $pixel_Size, $frame_Size);
-
 $stmt2->close();
 $conn->close();
 
@@ -60,6 +51,7 @@ $conn->close();
     <title>Booking Details</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js"></script>
     <!-- Bootstrap -->
     <?php include '../includes/bootstrap.php'; ?>
     <?php include '../includes/headerLoggedIn.php'; ?>
@@ -88,8 +80,8 @@ $conn->close();
                 <p><strong>Parking Space:</strong> <?php echo $booking['p_id']; ?></p>
                 <p><strong>Start:</strong> <?php echo $bookingDurationData['bd_start_time']; ?></p>
                 <p><strong>End:</strong> <?php echo $bookingDurationData['bd_end_time']; ?></p>
-                <div class="qr-code">
-                    <img src='<?php echo $qrCodeFile; ?>' alt='QR Code'>
+                <div class="d-flex justify-content-center mb-2">
+                    <div class="qr-code text-center" id="qr_code"></div>
                 </div>
             </div>
             <button class="btn btn-primary" type="submit" onclick="window.location.href = 'EditBooking.php?b_id=<?php echo $booking['b_id']; ?>'">Edit</button>
@@ -99,6 +91,18 @@ $conn->close();
             </form>
         </div>
     </div>
+
+    <script>
+        var qrCodeData = "<?php echo $booking['v_id'] . ' ' . $booking['p_id']; ?>";
+        var qrcode = new QRCode("qr_code", {
+            text: qrCodeData,
+            width: 128,
+            height: 128,
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+    </script>
 </body>
 
 </html>
