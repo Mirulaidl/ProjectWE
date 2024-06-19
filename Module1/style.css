@@ -113,3 +113,15 @@ input {
     border-top-color: #ebebeb;
 }
 
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+th {
+    text-align: center;
+    background-color: #f2f2f2;
+}

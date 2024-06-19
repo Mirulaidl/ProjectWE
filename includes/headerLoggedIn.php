@@ -40,7 +40,23 @@
                 <img src="../Asset/Img/user.svg" alt="User" style="float: right; margin-right: 15vw; margin-top: 1vh; height: 5vh;">
             </a>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="../Profile/profile.php">Profile</a></li>
+                <?php 
+                // session_start();
+
+                // $admin = $_SESSION['Admin'];
+                // $user = $_SESSION['User'];
+                // $uk = $_SESSION['UnitKeselamatan'];
+                
+
+                if (isset($_SESSION['Admin'])){
+                    echo '<li><a class="dropdown-item" href="../Profile/adminprofile.php">Profile</a></li>';
+                }else if (isset($_SESSION['UnitKeselamatan'])){
+                    echo '<li><a class="dropdown-item" href="../Profile/ukprofile.php">Profile</a></li>';
+                }else{
+                    echo '<li><a class="dropdown-item" href="../Profile/profile.php">Profile</a></li>';
+                }
+                ?>
+                
                 <li><a class="dropdown-item" href="../Logout.php">Log Out</a></li>
             </ul>
 

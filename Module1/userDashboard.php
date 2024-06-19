@@ -5,11 +5,48 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <!-- Bootstrap -->
 <?php 
     session_start();
     include '../includes/connect.php';
     include '../includes/bootstrap.php';
+
+    $sql = "
+SELECT ps.p_id, ps_name AS parking_space_name, ps.ps_status, COUNT(ps.ps_id) AS count
+FROM ParkingSpot ps
+JOIN ParkingSpace p ON ps.p_id = p.p_id
+GROUP BY ps.p_id, ps.ps_status
+ORDER BY ps.p_id, ps.ps_status";
+
+$result = $conn->query($sql);
+
+$data = [];
+
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        $p_id = $row['p_id'];
+        $status = $row['ps_status'];
+        $count = $row['count'];
+        $name = $row['parking_space_name'];
+
+        if (!isset($data[$p_id])) {
+            $data[$p_id] = [
+                'ps_name' => $name,
+                'Available' => 0,
+                'Occupied' => 0,
+            ];
+        }
+
+        if ($status == 'Available') {
+            $data[$p_id]['Available'] = $count;
+        } else {
+            $data[$p_id]['Occupied'] = $count;
+        }
+    }
+} else {
+    echo "0 results";
+}
 ?>
 </head>
 <?php
@@ -110,7 +147,55 @@
 
             </div>
             <div id="graph" class="col outer">
-
+            <table>
+            <tr>
+                <th>Parking Space</th>
+            </tr>
+            <?php
+            $colors = [
+                ['#FFB6C1', '#FFDAB9'],
+                ['#a6a6ff', '#FFFACD'],
+                ['#D3FFCE', '#DDA0DD'],
+                ['#B0E0E6', '#FF69B4'],
+                ['#87CEFA', '#FFDEAD']
+            ];
+            $counter = 0;
+            foreach ($data as $p_id => $details):
+                if ($counter % 2 == 0 && $counter != 0) {
+                    echo '</tr><tr>';
+                }
+                $colorIndex = $counter % count($colors);
+            ?>
+                <td>
+                    <h3><?php echo $p_id; ?></h3>
+                    <canvas id="pieChart<?php echo $p_id; ?>" width="400" height="400"></canvas>
+                </td>
+                <script>
+                    var ctx = document.getElementById('pieChart<?php echo $p_id; ?>').getContext('2d');
+                    var myPieChart = new Chart(ctx, {
+                        type: 'pie',
+                        data: {
+                            labels: ['Available', 'Occupied'],
+                            datasets: [{
+                                data: [<?php echo $details['Available']; ?>, <?php echo $details['Occupied']; ?>],
+                                backgroundColor: ['<?php echo $colors[$colorIndex][0]; ?>', '<?php echo $colors[$colorIndex][1]; ?>']
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                legend: {
+                                    position: 'top',
+                                },
+                            }
+                        }
+                    });
+                </script>
+            <?php
+                $counter++;
+            endforeach;
+            ?>
+        </table>
             </div>
         </div>
     </div>
