@@ -18,13 +18,11 @@
 <body>
     <div class="container" style="margin-top:15vh;">
         <center>
-            <button type="button" class="col buttonAdmin">
-                <h3>User Profile</h3>
-            </button>
+            
             <button type="button" class="col buttonAdmin" onclick="window.location.href='ViewParkingArea.php'">
                 <h3>Parking Area</h3>
             </button>
-            <button type="button" class="col buttonAdmin">
+            <button type="button" class="col buttonAdmin" onclick="window.location.href='../Module1/registerVehicle.php'">
                 <h3>Vehicle Registration</h3>
             </button>
         </center>
@@ -50,11 +48,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col outer">
-                <p>Total Bookings:</p>
-                <p>Available Parking Spaces:</p>
-                <p>Current Occupancy Rate:</p>
-            </div>
+            
         </div>
         <div class="row">
             <div class="col outer">

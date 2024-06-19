@@ -16,17 +16,31 @@
 
 <?php
     include '../includes/headerLoggedIn.php';
+
+    // Fetch summon details based on s_id from URL
+    $s_id = isset($_GET['s_id']) ? htmlspecialchars($_GET['s_id']) : '';
+
+    // Initialize variables
+    $vehicle_plate_no = '';
+    $violation_type = '';
+    $violation_date = '';
+    $violation_notes = '';
+
+    if ($s_id && isset($conn)) {
+        $stmt = $conn->prepare("SELECT v_id, s_violation, s_date, s_note FROM Summon WHERE s_id = ?");
+        $stmt->bind_param("s", $s_id);
+        $stmt->execute();
+        $stmt->bind_result($vehicle_plate_no, $violation_type, $violation_date, $violation_notes);
+        $stmt->fetch();
+        $stmt->close();
+    } else {
+        echo "No summon details found.";
+        exit;
+    }
 ?>
 
 <body>
-    <?php
-        // Retrieve data from session
-        $vehicle_plate_no = isset($_SESSION['v_id']) ? htmlspecialchars($_SESSION['v_id']) : '';
-        $violation_type = isset($_SESSION['s_violation']) ? htmlspecialchars($_SESSION['s_violation']) : '';
-        $violation_date = isset($_SESSION['s_date']) ? htmlspecialchars($_SESSION['s_date']) : '';
-        $violation_notes = isset($_SESSION['s_note']) ? htmlspecialchars($_SESSION['s_note']) : '';
-        $s_id = isset($_SESSION['s_id']) ? htmlspecialchars($_SESSION['s_id']) : '';
-    ?>
+    
 
         <div class="row">
             <div class="col leftcol">
@@ -84,6 +98,12 @@
                         <div class="col"> 
                             <div class="btn btn-primary" style="text-align: right;" >
                                 <a type="submit"class="btn btn-primary"  href="ukDashboard.php">Done</a>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="btn btn-primary" style="text-align: left;">
+                                <a type="submit" class="btn btn-primary" href="details.php?s_id=<?php echo $s_id; ?>">View Details</a>
                             </div>
                         </div>
 
