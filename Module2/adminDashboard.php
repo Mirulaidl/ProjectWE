@@ -22,6 +22,9 @@
             <button type="button" class="col buttonAdmin" onclick="window.location.href='ViewParkingArea.php'">
                 <h3>Parking Area</h3>
             </button>
+            <button type="button" class="col buttonAdmin" onclick="window.location.href='../Module1/adminUserApproval.php'">
+                <h3>User Approval</h3>
+            </button>
             <button type="button" class="col buttonAdmin" onclick="window.location.href='../Module1/adminVehicleReg.php'">
                 <h3>Vehicle Registration</h3>
             </button>
