@@ -32,6 +32,10 @@
         $stmt->bind_result($vehicle_plate_no, $violation_type, $violation_date, $violation_notes);
         $stmt->fetch();
         $stmt->close();
+
+         // Format the date to only show the date without time
+         $violation_date = (new DateTime($violation_date))->format('Y-m-d');
+         
     } else {
         echo "No summon details found.";
         exit;

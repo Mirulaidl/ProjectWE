@@ -33,6 +33,10 @@
         $stmt->bind_result($vehicle_plate_no, $violation_type, $violation_date, $violation_notes);
         $stmt->fetch();
         $stmt->close();
+
+        // Format the date to only show the date without time
+        $violation_date = (new DateTime($violation_date))->format('Y-m-d');
+         
     } else {
         echo "No summon details found.";
         exit;
@@ -103,7 +107,7 @@
 
                         <div class="col">
                             <div class="btn btn-primary" style="text-align: left;">
-                                <a type="submit" class="btn btn-primary" href="details.php?s_id=<?php echo $s_id; ?>">View Details</a>
+                                <a type="submit" class="btn btn-primary" href="details.php?s_id=<?php echo $s_id; ?>">Details</a>
                             </div>
                         </div>
 
