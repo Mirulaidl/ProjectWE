@@ -118,19 +118,19 @@ if ($result->num_rows > 0) {
                 
             </div>
             <?php
-            $status = "";
+            // $status = "";
                 if($status == "Pending"){
-                    echo '<button class="col buttonbook" onclick="location.href=\'../Module3/Booking.php\' disabled">
+                    echo '<button class="btn col btn-secondary buttonbook" onclick="location.href=\'../Module3/Booking.php\' disabled">
                             <h1>Book Parking</h1>
                             
                         </button>';
                 }else if ($status == "Approved"){
-                    echo '<button class="col buttonbook" onclick="location.href=\'../Module3/Booking.php\'">
+                    echo '<button class="btn col btn-primary buttonbook" onclick="location.href=\'../Module3/Booking.php\'">
                             <h1>Book Parking</h1>
                             
                         </button>';
                 }else{
-                    echo '<button class="col buttonbook" onclick="location.href=\'../Module3/Booking.php\'">
+                    echo '<button class="btn col btn-secondary buttonbook" onclick="location.href=\'../Module3/Booking.php\' disabled">
                             <h1>Book Parking</h1>
                             
                         </button>';
@@ -168,7 +168,9 @@ if ($result->num_rows > 0) {
             ?>
                 <td>
                     <h3><?php echo $p_id; ?></h3>
-                    <canvas id="pieChart<?php echo $p_id; ?>" width="400" height="400"></canvas>
+                    <div class="chart-container">
+                        <canvas id="pieChart<?php echo $p_id; ?>"></canvas>
+                    </div>
                 </td>
                 <script>
                     var ctx = document.getElementById('pieChart<?php echo $p_id; ?>').getContext('2d');
@@ -183,6 +185,7 @@ if ($result->num_rows > 0) {
                         },
                         options: {
                             responsive: true,
+                            maintainAspectRatio: false,
                             plugins: {
                                 legend: {
                                     position: 'top',

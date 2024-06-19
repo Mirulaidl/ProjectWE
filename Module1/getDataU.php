@@ -3,7 +3,8 @@
 require_once('../includes/connect.php');
 
 // Fetch data from the database
-$sql = "SELECT * FROM users";
+$pending = "Pending";
+$sql = "SELECT * FROM users WHERE u_status = '$pending'";
 $result = mysqli_query($conn, $sql);
 
 $data = array();

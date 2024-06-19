@@ -31,7 +31,7 @@ if (isset($_POST['submit'])) {
         //Belum siap navigate ke admin dashboard
     }else if ($_POST['userType'] == "Student"){
         $Student = "Student";
-        $Status = "Pending"; //tukar nanti bila admin boleh approve new user
+        $Status = "Approved"; //tukar nanti bila admin boleh approve new user
         $query = "SELECT * FROM users WHERE u_email='" . $_POST['email'] . "' AND u_password='" . $decryptedPass . "' AND u_type = '$Student'" . " AND u_status = '$Status'";
         $result = mysqli_query($conn, $query);
 
@@ -50,7 +50,7 @@ if (isset($_POST['submit'])) {
                     </script>
                 ';
         }else{
-            echo "<script>alert('Invalid Login'); window.location='../Login.php';</script>";
+            echo "<script>alert('Invalid Login or Your must be approved by Administrator'); window.location='../Login.php';</script>";
         }
     }else{
         $query = "SELECT * FROM UnitKeselamatan WHERE uk_email='" . $_POST['email'] . "' AND uk_password='" . $decryptedPass . "'";

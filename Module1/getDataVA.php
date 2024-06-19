@@ -3,7 +3,7 @@
 require_once('../includes/connect.php');
 
 // Fetch data from the database
-$pending = "Pending";
+$pending = "Approved";
 $sql = "SELECT v_id, v_plate_num, v_type, v_brand, v_status FROM vehicle WHERE v_status = '$pending'";
 $result = mysqli_query($conn, $sql);
 
