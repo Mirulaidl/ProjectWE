@@ -18,14 +18,13 @@
 <body>
     <div class="container" style="margin-top:15vh;">
         <center>
-            
-            <button type="button" class="col buttonAdmin" onclick="window.location.href='ViewParkingArea.php'">
+            <button type="button" class="col buttonAdmin" onclick="window.location.href='ViewParkingArea.php'" style="background-color:  dodgerblue;">
                 <h3>Parking Area</h3>
             </button>
-            <button type="button" class="col buttonAdmin" onclick="window.location.href='../Module1/adminUserApproval.php'">
+            <button type="button" class="col buttonAdmin" onclick="window.location.href='../Module1/adminUserApproval.php'" style="background-color:  dodgerblue;">
                 <h3>User Approval</h3>
             </button>
-            <button type="button" class="col buttonAdmin" onclick="window.location.href='../Module1/adminVehicleReg.php'">
+            <button type="button" class="col buttonAdmin" onclick="window.location.href='../Module1/adminVehicleReg.php'" style="background-color:  dodgerblue;">
                 <h3>Vehicle Registration</h3>
             </button>
         </center>
@@ -51,7 +50,6 @@
                     </div>
                 </div>
             </div>
-            
         </div>
         <div class="row">
             <div class="col outer">
@@ -65,17 +63,18 @@
                 <canvas id="parkingSpotChart"></canvas>
                 
                 <h3 class="text-center">Total Booking</h3>
-                <?php $sql = "SELECT COUNT(b_id) as booking_count FROM booking";
-                        $result = $conn->query($sql);
+                <?php 
+                    $sql = "SELECT COUNT(b_id) as booking_count FROM booking";
+                    $result = $conn->query($sql);
 
-                        $booking_count = 0;
-                        if ($result->num_rows > 0) {
-                            while($row = $result->fetch_assoc()) {
-                                $booking_count = $row["booking_count"];
-                            }
-                        } else {
-                            echo "0 results";
+                    $booking_count = 0;
+                    if ($result->num_rows > 0) {
+                        while($row = $result->fetch_assoc()) {
+                            $booking_count = $row["booking_count"];
                         }
+                    } else {
+                        echo "0 results";
+                    }
                 ?>
                 <canvas id="bookingChart"></canvas>
             </div>
@@ -130,7 +129,7 @@
         fetchParkingSpotData();
 
         // Function to fetch parking booking data and create chart
-          var bookingCount = <?php echo $booking_count; ?>;
+        var bookingCount = <?php echo $booking_count; ?>;
 
         // Prepare data for Chart.js
         var labels = ["Total Bookings"];
@@ -151,17 +150,17 @@
             data: data,
             options: {
                 scales: {
-                   y: {
-                    beginAtZero: true,
-                    ticks: {
-                        stepSize: 1,
-                        callback: function(value) {
-                            if (Number.isInteger(value)) {
-                                return value;
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1,
+                            callback: function(value) {
+                                if (Number.isInteger(value)) {
+                                    return value;
+                                }
                             }
                         }
                     }
-                }
                 }
             }
         };
