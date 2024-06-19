@@ -38,7 +38,7 @@ include '../includes/headerLoggedIn.php';
 <div class="background-image">
 <div class="row">
         <div class="col"></div>
-        <div class="colmid col" style="margin-top: 20vh;">
+        <div class="colmid col rounded" style="margin-top: 20vh;">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Profile</button>
