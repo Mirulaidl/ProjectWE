@@ -4,6 +4,8 @@
 <title>Profile</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
  <!-- Bootstrap -->
  <?php
     include '../includes/bootstrap.php'; 
@@ -15,39 +17,8 @@
  <?php
 include '../includes/headerLoggedIn.php';
 ?>
-<style>
-    body {
-    font-family: 'Poppins';
-    background-image: url("../Asset/Img/FK.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    margin-right: 0;
-    margin-left: 0;
-    background-color: #33ab9f;
-    overflow: hidden;
-    }
 
-    html,body
-    {
-    width: 100%;
-    /* height: 100%; */
-    margin: 0px;
-    padding: 0px;
-    overflow-x: hidden; 
-    }
-
-    .colmid{
-        margin-top: 20vh;
-        width: 50vw;
-        background: white;
-    }
-
-    label{
-        color: #33ab9f;
-    }
-</style>
-    
-<?php
+    <?php
     session_start();
     $uid = $_SESSION['User'];
 
@@ -67,7 +38,7 @@ include '../includes/headerLoggedIn.php';
 <div class="background-image">
 <div class="row">
         <div class="col"></div>
-        <div class="colmid col">
+        <div class="colmid col" style="margin-top: 20vh;">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Profile</button>
@@ -210,11 +181,27 @@ include '../includes/headerLoggedIn.php';
                             </div>
                         </div>
                         <div class="row">
+                        <label class="form-label">Sticker</label>
+                            <div class="mb-3 col-md-6 qr-code" id="qrcode">
+                              
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="mb-3 col-md-6">
                                 <button id="btnSave" name="btnSave" type="submit" class="btn btn-primary me-2">Save changes</button>
                             </div>
                         </div>
                     </form>
+                    <script>
+                        // Generate QR code with link to details.php
+                        var v_id = "<?php $vid = $row['v_id']; echo $vid; ?>";
+                        var url = "indah.ump.edu.my/CD22098/FKPark/Module1/sticker.php?v_id=" + v_id;
+                        new QRCode(document.getElementById("qrcode"), {
+                            text: url,
+                            width: 128,
+                            height: 128
+                        });
+                    </script>
                 </div>
                 <?php 
 
@@ -249,6 +236,7 @@ include '../includes/headerLoggedIn.php';
                     }
 
                 }?>
+                
                 <!-- End Vehicle -->
 
             </div>
