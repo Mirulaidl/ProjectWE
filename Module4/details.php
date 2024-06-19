@@ -33,9 +33,8 @@
         $stmt->fetch();
         $stmt->close();
 
-         // Format the date to only show the date without time
-         $violation_date = (new DateTime($violation_date))->format('Y-m-d');
-         
+        // Format the date to only show the date without time
+        $violation_date = (new DateTime($violation_date))->format('Y-m-d');
     } else {
         echo "No summon details found.";
         exit;
@@ -43,8 +42,6 @@
 ?>
 
 <body>
-    
-
     <div class="row">
         <div class="col leftcol"></div>
 
@@ -61,13 +58,45 @@
                 <div class="row">
                     <div class="col">
                         <div class="receipt" id="receiptContent">
-                            <!--<p class="p1">Issued by: [Your Officer Name]</p>-->
                             <p class="p1">Plate No: <?php echo $vehicle_plate_no; ?></p>
                             <p class="p1">Violation: <?php echo $violation_type; ?></p>
-                            <!--<p class="p1">Demerit Point: [Your Demerit Points]</p>-->
                             <p class="p1">Dated: <?php echo $violation_date; ?></p>
                             <p class="p1">Notes: <?php echo $violation_notes; ?></p>
                         </div>
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="row">
+                    <div class="col">
+                        <p>DEMERIT POINT</p>
+                        <table class="table table-success table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Total Point</th>
+                                    <th scope="col">Enforcement Type</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>10 points</td>
+                                    <td>Parking Violation</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>15 points</td>
+                                    <td>Traffic Violation</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td>20 points</td>
+                                    <td>Accident</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
 
@@ -89,17 +118,10 @@
 
     <script>
         function printDetails() {
-            // Get the content of the receipt
             var printContents = document.getElementById('receiptContent').innerHTML;
             var originalContents = document.body.innerHTML;
-
-            // Set the body to the content to print
             document.body.innerHTML = printContents;
-
-            // Open the print dialog
             window.print();
-
-            // Restore the original content
             document.body.innerHTML = originalContents;
         }
     </script>
