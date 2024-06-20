@@ -49,6 +49,9 @@ include '../includes/headerLoggedIn.php';
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Summon</button>
                 </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="book-tab" data-bs-toggle="tab" data-bs-target="#book" type="button" role="tab" aria-controls="profile" aria-selected="false">Booking</button>
+                </li>
                 
             </ul>
             <div class="tab-content" id="myTabContent">
@@ -90,6 +93,58 @@ include '../includes/headerLoggedIn.php';
                             </div>
                         </div>
                     </form>
+                </div>
+                <div class="tab-pane fade" id="book" role="tabpanel" aria-labelledby="book-tab">
+                    <table id="bookTable">
+                            <thead>
+                                <tr>
+                                    <th>Parking</th>
+                                    <th>Vehicle</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Data will be dynamically inserted here -->
+                            </tbody>
+                        </table>
+                        <script>
+                // Function to fetch data from the database
+                function fetchDataBooking() {
+                    fetch('getDataBooking.php')
+                        .then(response => response.json())
+                        .then(data => {
+                            const tableBody = document.querySelector('#bookTable tbody');
+                            tableBody.innerHTML = ''; // Clear existing rows
+
+                            data.forEach(row => {
+                                const newRow = document.createElement('tr');
+                                newRow.innerHTML = `
+                                    <td>${row.v_id}</td>
+                                    <td>${row.ps_id}</td>
+                                     <td>
+                                         <button id="vBooking" type="button" class="view-button btn btn-primary" onclick="viewBooking('${row.b_id}','${row.v_id}','${row.ps_id}')" data-bs-toggle="modal" data-bs-target="#bookingModal">View</button>
+                                     </td>
+                                `;
+
+                                tableBody.appendChild(newRow);
+                            });
+                        })
+                        .catch(error => console.error('Error:', error));
+                }
+
+                // Call fetchData() when the page loads to populate the table
+                fetchDataBooking();
+
+                function bookingSummon(b_id, v_id, ps_id) {
+                    // Redirect to the edit page with the specified id
+                    document.getElementById('modalBId').value = b_id;
+                    document.getElementById('modalVId').value = v_vid;
+                    document.getElementById('modalPSId').value = ps_id;
+
+                }
+
+                // document.addEventListener('DOMContentLoaded', fetchData);
+
+            </script>
                 </div>
                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                     <table id="summonTable">
@@ -324,7 +379,39 @@ include '../includes/headerLoggedIn.php';
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL booking-->
+    <div class="modal fade" id="bookingModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Booking Details</h5>
+                    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button> -->
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="modalVId">ID</label>
+                            <input type="text" class="form-control" id="modalVId" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="modalBId">Date</label>
+                            <input type="text" class="form-control" id="modalBId" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="modalPSId">Violation</label>
+                            <input type="text" class="form-control" id="modalPSId" readonly>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>

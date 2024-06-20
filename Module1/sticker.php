@@ -15,6 +15,9 @@
     h2{
         color: aliceblue;
     }
+    img{
+        
+    }
 
     @media print{
         .background, .background * {
@@ -23,6 +26,7 @@
     }
 </style>
 <div class="background container">
+<meta name="viewport" content="width=device-width"; initial-scale="1.0" />
 <?php 
 $v_id = isset($_GET['v_id']) ? htmlspecialchars($_GET['v_id']) : '';
 ?>
