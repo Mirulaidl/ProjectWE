@@ -137,10 +137,10 @@ include '../includes/headerLoggedIn.php';
                 // Call fetchData() when the page loads to populate the table
                 fetchDataBooking();
 
-                function bookingSummon(b_id, v_id, ps_id) {
+                function viewBooking(b_id, v_id, ps_id) {
                     // Redirect to the edit page with the specified id
                     document.getElementById('modalBId').value = b_id;
-                    document.getElementById('modalVId').value = v_vid;
+                    document.getElementById('modalVId').value = v_id;
                     document.getElementById('modalPSId').value = ps_id;
 
                 }
@@ -399,13 +399,13 @@ include '../includes/headerLoggedIn.php';
                 </div>
                 <div class="modal-body">
                     <form>
+                    <div class="form-group">
+                            <label for="modalBId">Date</label>
+                            <input type="text" class="form-control" id="modalBId" readonly>
+                        </div>
                         <div class="form-group">
                             <label for="modalVId">ID</label>
                             <input type="text" class="form-control" id="modalVId" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="modalBId">Date</label>
-                            <input type="text" class="form-control" id="modalBId" readonly>
                         </div>
                         <div class="form-group">
                             <label for="modalPSId">Violation</label>

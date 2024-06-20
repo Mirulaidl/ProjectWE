@@ -7,7 +7,7 @@ session_start();
 $uid = $_SESSION['User'];
 $vp = $_SESSION['VehiclePlate'];
 // echo "<script>console.log('Debug Objects: '" . $vp . $uid . "' ');</script>";
-$sql = "SELECT v_id, ps_id FROM booking WHERE v_id = '" . $vp . "'";
+$sql = "SELECT b_id, v_id, ps_id FROM booking WHERE v_id = '" . $vp . "'";
 $result = mysqli_query($conn, $sql);
 
 $data = array();
