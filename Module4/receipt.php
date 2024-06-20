@@ -132,13 +132,25 @@
         <script>
             // Generate QR code with link to details.php
             var s_id = "<?php echo $s_id; ?>";
-            var url = "details.php?s_id=" + s_id;
+            //var url = "details.php?s_id=" + s_id;
+            var url = "indah.ump.edu.my/CD22098/FKPark/Module4/details.php?s_id=" + s_id;
             new QRCode(document.getElementById("qrcode"), {
                 text: url,
                 width: 128,
                 height: 128
             });
         </script>
+
+                    <!--<script>
+                        // Generate QR code with link to details.php
+                        var v_id = "<?php $vid = $row['v_id']; echo $vid; ?>";
+                        var url = "indah.ump.edu.my/CD22098/FKPark/Module1/sticker.php?v_id=" + v_id;
+                        new QRCode(document.getElementById("qrcode"), {
+                            text: url,
+                            width: 128,
+                            height: 128
+                        });
+                    </script>-->
 
 
 </body>
