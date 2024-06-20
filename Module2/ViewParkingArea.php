@@ -40,6 +40,7 @@
                 </tbody>
             </table>
             <div class="containerButton">
+            <button class="btn addUpdate-button" onclick="history.go(-1);">Back </button>
                 <button class="btn addUpdate-button" onclick="addParking()">Add</button>
             </div>
             <!-- // end parking area -->
@@ -67,6 +68,7 @@
                 </tbody>
             </table>
             <div class="containerButton">
+            <button class="btn addUpdate-button" onclick="history.go(-1);">Back </button>
                 <button class="btn addUpdate-button" onclick="addParkingSpot()">Add</button>
             </div>
             <!-- // end parking spot -->
