@@ -36,9 +36,12 @@ include '../includes/headerLoggedIn.php';
         ?>
 <body>
 <div class="background-image">
+
 <div class="row">
+
         <div class="col"></div>
         <div class="colmid col rounded" style="margin-top: 20vh;">
+        <button class="btn btn-primary mx-2 mb-2 mt-2" onclick="history.go(-1);">Back </button>
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Profile</button>
